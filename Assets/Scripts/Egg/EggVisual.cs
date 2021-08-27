@@ -31,7 +31,7 @@ public class EggVisual : MonoBehaviour
 
     }
 
-    // Change the color of the two halves of the egg
+    // Change the display color of the two halves of the egg
     public void Tint(ColorType topColor, ColorType bottomColor)
     {
         topRenderer.color = GameManager.Instance.eggData.GetRGB(topColor);
@@ -41,11 +41,6 @@ public class EggVisual : MonoBehaviour
     // Get the total size of both halves of the egg.
     public Vector2 GetEggWorldSize()
     {
-        //float eggHalvesDistance = topRenderer.bounds.center.y - bottomRenderer.bounds.center.y;
-        // float worldHeight = eggHalvesDistance + topRenderer.bounds.extents.y + bottomRenderer.bounds.extents.y;
-
-        //return new Vector2(topRenderer.bounds.size.x, worldHeight);
-
         return wholeRenderer.bounds.size;
     }
 }

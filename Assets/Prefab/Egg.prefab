@@ -52,6 +52,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3898826837600303169}
     m_Modifications:
+    - target: {fileID: 1389693136013346352, guid: f897dd40de8638e4e8594913c6c76e86, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2397894990460776395, guid: f897dd40de8638e4e8594913c6c76e86, type: 3}
       propertyPath: m_Name
       value: EggVisual

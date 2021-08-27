@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e384070a372abc84684ce149a3390d5c, type: 3}
   m_Name: BoardData
   m_EditorClassIdentifier: 
-  boardWidth: 10
-  boardHeight: 10
+  gridWidth: 10
+  gridHeight: 10
+  levelData:
+  - maxColor: 3
