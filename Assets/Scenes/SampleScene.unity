@@ -271,26 +271,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1683328732469331822, guid: b1d11158b08b5f9419ca91dce1e6821a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683328732492965696, guid: b1d11158b08b5f9419ca91dce1e6821a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1683328733222308794, guid: b1d11158b08b5f9419ca91dce1e6821a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1700976254933469811, guid: b1d11158b08b5f9419ca91dce1e6821a, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2689287592363822779, guid: b1d11158b08b5f9419ca91dce1e6821a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3898826837600303169, guid: b1d11158b08b5f9419ca91dce1e6821a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -716,7 +696,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 110
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
