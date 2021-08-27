@@ -3,32 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-
+// Data about board setup and levels.
 
 [CreateAssetMenu(fileName = "BoardData", menuName = "ScriptableObjects/BoardData")]
 public class BoardData : ScriptableObject
 {
-    // Grid
-
-    [SerializeField]
-    private int gridWidth = 10;
-
-    [SerializeField]
-    private int gridHeight = 10;
+    // Set in editor
+    [SerializeField] private int gridWidth = 10;
+    [SerializeField] private int gridHeight = 10;
 
     public int GridWidth => gridWidth;
     public int GridHeight => gridHeight;
 
     // Level data
-
     [System.Serializable]
-    private struct LevelDef
+    private class LevelDef
     {
-        public ColorType maxColor;
+        public ColorType maxColor = ColorType.Red;
     }
 
     [SerializeField]
-    private LevelDef[] levelData;
+    private LevelDef[] levelData = null;
 
     public int MaxLevel => levelData.Length;
 

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Data about eggs.
+
 [System.Serializable]
 public struct ColorData
 {
@@ -12,8 +14,7 @@ public struct ColorData
 [CreateAssetMenu(fileName = "EggData", menuName = "ScriptableObjects/EggData")]
 public class EggData : ScriptableObject
 {
-    [SerializeField]
-    private ColorData [] colors = null;
+    [SerializeField] private ColorData [] colors = null;
 
     // Translate from Color ID to RGBA data
     public Color GetRGB(ColorType type)

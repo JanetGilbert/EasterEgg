@@ -7,18 +7,18 @@ using UnityEngine.Assertions;
 public class Board : MonoBehaviour
 {
     // Set in editor
-    [SerializeField]
-    private Egg eggPrefab = null;
+    [SerializeField] private Egg eggPrefab = null;
+    [SerializeField] private RectTransform gamePanelPosition = null; // The position of the UI panel where the game pieces will be placed.
 
-    [SerializeField]
-    private RectTransform gamePanelPosition = null; // The position of the UI panel where the game pieces will be placed.
-
-    // Eggs contained in board.
+    // Eggs
     private Egg[,] eggs;
     private List<Egg> eggPool = null;
 
     // Cached
-    private Vector2Int gridSize;
+    private Vector2Int gridSize; // Size of grid, in cells.
+    private Vector2 boardWorldSize; // Size of board, in world coordinates.
+    private Vector2 boardWorldPos; // Bottom-left of board, in world coordinates.
+    private Vector2 eggWorldSize; // Size of egg cell, in world coordinates.
 
     // Game state
     private int level = 0;
@@ -29,7 +29,7 @@ public class Board : MonoBehaviour
         Assert.IsNotNull(eggPrefab);
         Assert.IsNotNull(gamePanelPosition);
 
-        gridSize = new Vector2Int(GameManager.Instance.boardData.GridWidth, GameManager.Instance.boardData.GridHeight);
+        gridSize = new Vector2Int(GameManager.Instance.BoardSetup.GridWidth, GameManager.Instance.BoardSetup.GridHeight);
 
         MakeEggPool();
         ClearBoard();
@@ -38,7 +38,7 @@ public class Board : MonoBehaviour
 
     void Update()
     {
-        
+        CheckInput();
     }
 
     // Create Egg object pool, but do not set up eggs.
@@ -61,7 +61,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    // Return all eggs to default position.
+    // Return all eggs to default position and set up cached board position variables.
     private void ClearBoard()
     {
         Assert.IsNotNull(eggPool);
@@ -72,11 +72,11 @@ public class Board : MonoBehaviour
 
         // Find the world size and position of the board on screen, via a placeholder panel in the UI.
         Vector3[] boardCorners      = new Vector3[4]; gamePanelPosition.GetWorldCorners(boardCorners); // Bottom left, top left, top right, bottom right
-        Vector2 boardWorldSize      = new Vector2(boardCorners[3].x - boardCorners[0].x, boardCorners[1].y - boardCorners[0].y);
-        Vector2 boardWorldPos       = boardCorners[0]; // Board (0,0) is the bottom left of the board.
+        boardWorldSize              = new Vector2(boardCorners[3].x - boardCorners[0].x, boardCorners[1].y - boardCorners[0].y);
+        boardWorldPos               = boardCorners[0]; // Board (0,0) is the bottom left of the board.
 
         // Scale the eggs to fit in the board space.
-        Vector2 eggWorldSize        = new Vector2(boardWorldSize.x / (float)gridSize.x, boardWorldSize.y / (float)gridSize.y);
+        eggWorldSize                = new Vector2(boardWorldSize.x / (float)gridSize.x, boardWorldSize.y / (float)gridSize.y);
         float eggScaleY             = eggWorldSize.y / eggPrefabWorldSize.y;
         Vector2 eggScale            = new Vector2(eggScaleY, eggScaleY);
 
@@ -100,16 +100,42 @@ public class Board : MonoBehaviour
         }
     }
 
+    // Randomize the colors of both halves of the eggs according to level.
     private void RandomizeEggs()
     {
         for (int x = 0; x < gridSize.x; x++)
         {
             for (int y = 0; y < gridSize.y; y++)
             {
-                ColorType colorA = (ColorType)Random.Range(0,(int)GameManager.Instance.boardData.GetMaxColor(level));
-                ColorType colorB = (ColorType)Random.Range(0,(int)GameManager.Instance.boardData.GetMaxColor(level));
+                ColorType colorA = (ColorType)Random.Range(0,(int)GameManager.Instance.BoardSetup.GetMaxColor(level));
+                ColorType colorB = (ColorType)Random.Range(0,(int)GameManager.Instance.BoardSetup.GetMaxColor(level));
                 eggs[x, y].SetColor(colorA, colorB);
             }
         }
+    }
+
+    private void CheckInput()
+    {
+        // Mouse
+        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f));
+
+        if (Input.GetMouseButton(0)) // Left click
+        {
+            Rect boardRect = new Rect(boardWorldPos.x, boardWorldPos.y, boardWorldSize.x, boardWorldSize.y);
+
+            if (boardRect.Contains(mousePosWorld))
+            {
+                int x = (int)((mousePosWorld.x - boardWorldPos.x) / eggWorldSize.x);
+                int y = (int)((mousePosWorld.y - boardWorldPos.y) / eggWorldSize.y);
+
+                Debug.Log("x:" + x + " y:" + y);
+
+                eggs[x, y].SelectEgg(true);
+            }
+        }
+
+
+        // Touch
+
     }
 }

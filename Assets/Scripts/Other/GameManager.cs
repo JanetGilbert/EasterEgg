@@ -6,8 +6,11 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     // Scriptable objects
-    public EggData eggData; // Information about egg setup
-    public BoardData boardData; // Information about board setup
+    [SerializeField] private EggData eggData = null; // Information about egg setup
+    [SerializeField] private BoardData boardData = null; // Information about board setup
+
+    public EggData EggSetup => eggData;
+    public BoardData BoardSetup => boardData;
 
     void Start()
     {

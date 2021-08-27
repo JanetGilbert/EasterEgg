@@ -6,23 +6,22 @@ using UnityEngine.Assertions;
 // Controls the appearance of a normal egg
 public class EggVisual : MonoBehaviour
 {
-     // Set in editor
-    [SerializeField]
-    private SpriteRenderer topRenderer = null;
+    // Set in editor
+    [SerializeField] private SpriteRenderer topRenderer = null;
+    [SerializeField] private SpriteRenderer bottomRenderer = null;
+    [SerializeField] private SpriteRenderer wholeRenderer = null;
+    [SerializeField] private SpriteRenderer highlightRenderer = null;
 
-    [SerializeField]
-    private SpriteRenderer bottomRenderer = null;
-
-    [SerializeField]
-    private SpriteRenderer wholeRenderer = null;
+    public bool Highlighted { get; private set; } // Is egg selected in chain?
 
     void Start()
     {
         Assert.IsNotNull(topRenderer);
         Assert.IsNotNull(bottomRenderer);
         Assert.IsNotNull(wholeRenderer);
+        Assert.IsNotNull(highlightRenderer);
 
-        //Tint(ColorType.Red, ColorType.Blue);
+        Highlighted = false;
     }
 
 
@@ -34,13 +33,20 @@ public class EggVisual : MonoBehaviour
     // Change the display color of the two halves of the egg
     public void Tint(ColorType topColor, ColorType bottomColor)
     {
-        topRenderer.color = GameManager.Instance.eggData.GetRGB(topColor);
-        bottomRenderer.color = GameManager.Instance.eggData.GetRGB(bottomColor);
+        topRenderer.color = GameManager.Instance.EggSetup.GetRGB(topColor);
+        bottomRenderer.color = GameManager.Instance.EggSetup.GetRGB(bottomColor);
     }
 
     // Get the total size of both halves of the egg.
     public Vector2 GetEggWorldSize()
     {
         return wholeRenderer.bounds.size;
+    }
+
+    // Set highlight on/off.
+    public void Highlight(bool highlight)
+    {
+        Highlighted = highlight;
+        highlightRenderer.gameObject.SetActive(highlight);
     }
 }

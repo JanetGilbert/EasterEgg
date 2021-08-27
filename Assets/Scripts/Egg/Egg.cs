@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Egg : MonoBehaviour
 {
-    [SerializeField]
-    private EggVisual eggVisual = null;
+    // Set in editor
+    [SerializeField] private EggVisual eggVisual = null;
 
+    
     private ColorType topColor;
     private ColorType bottomColor;
+    private bool selected; // Is it in a match chain?
 
     void Start()
     {
-
+        topColor = ColorType.Red;
+        bottomColor = ColorType.Red;
+        selected = false;
     }
 
 
@@ -34,5 +38,11 @@ public class Egg : MonoBehaviour
         bottomColor = newBottomColor;
 
         eggVisual.Tint(topColor, bottomColor);
+    }
+
+    // Show that the egg is selected.
+    public void SelectEgg(bool select)
+    {
+        eggVisual.Highlight(select);
     }
 }

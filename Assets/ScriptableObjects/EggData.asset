@@ -17,3 +17,15 @@ MonoBehaviour:
     rgba: {r: 1, g: 0, b: 0, a: 1}
   - colorType: 1
     rgba: {r: 1, g: 0.5459139, b: 0, a: 1}
+  - colorType: 2
+    rgba: {r: 1, g: 0.98879445, b: 0, a: 1}
+  - colorType: 3
+    rgba: {r: 0.066957, g: 1, b: 0, a: 1}
+  - colorType: 4
+    rgba: {r: 0, g: 0.012205601, b: 1, a: 1}
+  - colorType: 5
+    rgba: {r: 0.5670845, g: 0.15236738, b: 0.754717, a: 1}
+  - colorType: 6
+    rgba: {r: 0.89103466, g: 0.645283, b: 1, a: 1}
+  - colorType: 7
+    rgba: {r: 1, g: 1, b: 1, a: 1}
