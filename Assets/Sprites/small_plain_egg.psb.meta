@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f26cd506b7fa3e4dace6a5ffe7ca009
+guid: d9652d8ab287dfe4f961b1e34f15c602
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -28,7 +28,7 @@ ScriptedImporter:
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
-    spriteExtrude: 1
+    spriteExtrude: 0
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
@@ -90,62 +90,18 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData:
-  - name: Bow
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1347
-      y: 1025
-      width: 1335
-      height: 597
-    spriteID: 1f8e0e8c970e08740ae5fb9dff0b11bf
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1347, y: 782}
-  - name: Top_solid
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 4
-      width: 1332
-      height: 1013
-    spriteID: 1eb9a6087180ddd498f5afd4127df4c1
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 2, y: -732}
   - name: Top
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1344
-      y: 4
-      width: 1332
-      height: 1013
-    spriteID: bff8575628039264b9f4069c4708f91b
+      x: 4
+      y: 389
+      width: 274
+      height: 220
+    spriteID: a90608b0ec7c87e47bc00d85ab8932e8
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -155,30 +111,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1342, y: -732}
-  - name: Bottom_solid
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2684
-      y: 4
-      width: 1335
-      height: 793
-    spriteID: cf5cf7a75f95c3048b7322896ae7626a
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 2684, y: 4}
-  - name: Bottom
+    uvTransform: {x: 3, y: 232}
+  - name: Whole
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -186,10 +120,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 1025
-      width: 1335
-      height: 793
-    spriteID: f88654e4f3c13ba4b8d52d41696a04b4
+      y: 4
+      width: 276
+      height: 377
+    spriteID: b1d3f5133e7c4244bac04543a8fa712e
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -199,20 +133,42 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1025}
+    uvTransform: {x: 4, y: 4}
+  - name: Bottom
+    originalName: 
+    pivot: {x: 0.5, y: 0.83}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 617
+      width: 276
+      height: 189
+    spriteID: a61bef7636a752c418848ce04a466183
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 617}
   rigSpriteImportData:
-  - name: Bow
+  - name: Top
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 1347
-      y: 1025
-      width: 1335
-      height: 597
-    spriteID: 855b2618bea45fa4e98b1c536ac0e50e
+      x: 4
+      y: 389
+      width: 274
+      height: 220
+    spriteID: c74e9fcc8ad158f478302a7e22b3cfa8
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -222,8 +178,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1347, y: 782}
-  - name: Top_solid
+    uvTransform: {x: 3, y: 232}
+  - name: Whole
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -232,9 +188,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1332
-      height: 1013
-    spriteID: 9b89f94800082614298716609644526d
+      width: 276
+      height: 377
+    spriteID: 2885bebb7172f2f4f824bdca08139422
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -244,51 +200,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 2, y: -732}
-  - name: Top
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1344
-      y: 4
-      width: 1332
-      height: 1013
-    spriteID: 6ebe24466f36b364a80139f9ee131bf8
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 1342, y: -732}
-  - name: Bottom_solid
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2684
-      y: 4
-      width: 1335
-      height: 793
-    spriteID: 14bdb1158b6cf304da89a1175c2da46b
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 2684, y: 4}
+    uvTransform: {x: 4, y: 4}
   - name: Bottom
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -297,10 +209,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 1025
-      width: 1335
-      height: 793
-    spriteID: a860174800eac0142960276351da7091
+      y: 617
+      width: 276
+      height: 189
+    spriteID: d1b5b6dc71e493444aec3f78bb8764cf
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -310,7 +222,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 1025}
+    uvTransform: {x: 4, y: 617}
   characterData:
     bones: []
     parts: []
@@ -352,94 +264,66 @@ ScriptedImporter:
   documentPivot: {x: 0, y: 0}
   documentAlignment: 7
   importHiddenLayers: 0
-  importedTextureWidth: 2048
-  importedTextureHeight: 2048
-  documentSize: {x: 1335, y: 1749}
+  importedTextureWidth: 512
+  importedTextureHeight: 1024
+  documentSize: {x: 276, y: 377}
   paperDollMode: 0
   keepDupilcateSpriteName: 1
   skeletonAssetReferenceID: 
   spriteCategoryList:
     categories: []
-  textureActualWidth: 4096
-  textureActualHeight: 4096
+  textureActualWidth: 512
+  textureActualHeight: 1024
   spritePackingTag: 
   resliceFromLayer: 0
   mosaicPSDLayers:
-  - name: Bow
-    spriteName: Bow
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 1f8e0e8c970e08740ae5fb9dff0b11bf
-    layerID: 0
-    mosaicPosition: {x: 1347, y: 1025}
-  - name: Top_solid
-    spriteName: Top_solid
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 1eb9a6087180ddd498f5afd4127df4c1
-    layerID: -1112883431
-    mosaicPosition: {x: 4, y: 4}
   - name: Top
     spriteName: Top
     isGroup: 0
     parentIndex: -1
-    spriteID: bff8575628039264b9f4069c4708f91b
-    layerID: 1502599955
-    mosaicPosition: {x: 1344, y: 4}
-  - name: Bottom_solid
-    spriteName: Bottom_solid
+    spriteID: a90608b0ec7c87e47bc00d85ab8932e8
+    layerID: 0
+    mosaicPosition: {x: 4, y: 389}
+  - name: Whole
+    spriteName: Whole
     isGroup: 0
     parentIndex: -1
-    spriteID: cf5cf7a75f95c3048b7322896ae7626a
-    layerID: 969548269
-    mosaicPosition: {x: 2684, y: 4}
+    spriteID: b1d3f5133e7c4244bac04543a8fa712e
+    layerID: 1131304445
+    mosaicPosition: {x: 4, y: 4}
   - name: Bottom
     spriteName: Bottom
     isGroup: 0
     parentIndex: -1
-    spriteID: f88654e4f3c13ba4b8d52d41696a04b4
+    spriteID: a61bef7636a752c418848ce04a466183
     layerID: 70940219
-    mosaicPosition: {x: 4, y: 1025}
+    mosaicPosition: {x: 4, y: 617}
   rigPSDLayers:
-  - name: Bow
-    spriteName: Bow
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 855b2618bea45fa4e98b1c536ac0e50e
-    layerID: 0
-    mosaicPosition: {x: 1347, y: 1025}
-  - name: Top_solid
-    spriteName: Top_solid
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 9b89f94800082614298716609644526d
-    layerID: -1112883431
-    mosaicPosition: {x: 4, y: 4}
   - name: Top
     spriteName: Top
     isGroup: 0
     parentIndex: -1
-    spriteID: 6ebe24466f36b364a80139f9ee131bf8
-    layerID: 1502599955
-    mosaicPosition: {x: 1344, y: 4}
-  - name: Bottom_solid
-    spriteName: Bottom_solid
+    spriteID: c74e9fcc8ad158f478302a7e22b3cfa8
+    layerID: 0
+    mosaicPosition: {x: 4, y: 389}
+  - name: Whole
+    spriteName: Whole
     isGroup: 0
     parentIndex: -1
-    spriteID: 14bdb1158b6cf304da89a1175c2da46b
-    layerID: 969548269
-    mosaicPosition: {x: 2684, y: 4}
+    spriteID: 2885bebb7172f2f4f824bdca08139422
+    layerID: 1131304445
+    mosaicPosition: {x: 4, y: 4}
   - name: Bottom
     spriteName: Bottom
     isGroup: 0
     parentIndex: -1
-    spriteID: a860174800eac0142960276351da7091
+    spriteID: d1b5b6dc71e493444aec3f78bb8764cf
     layerID: 70940219
-    mosaicPosition: {x: 4, y: 1025}
+    mosaicPosition: {x: 4, y: 617}
   sharedRigPSDLayers: []
   generateGOHierarchy: 0
-  textureAssetName: egg Texture
-  prefabAssetName: egg Prefab
-  spriteLibAssetName: egg Sprite Lib
-  skeletonAssetName: egg Skeleton
+  textureAssetName: small_plain_egg Texture
+  prefabAssetName: small_plain_egg Prefab
+  spriteLibAssetName: small_plain_egg Sprite Lib
+  skeletonAssetName: small_plain_egg Skeleton
   secondarySpriteTextures: []
