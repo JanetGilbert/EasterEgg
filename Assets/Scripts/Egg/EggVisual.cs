@@ -14,7 +14,7 @@ public class EggVisual : MonoBehaviour
 
     public bool Highlighted { get; private set; } // Is egg selected in chain?
 
-    void Start()
+    void Awake()
     {
         Assert.IsNotNull(topRenderer);
         Assert.IsNotNull(bottomRenderer);
@@ -22,6 +22,11 @@ public class EggVisual : MonoBehaviour
         Assert.IsNotNull(highlightRenderer);
 
         Highlighted = false;
+    }
+
+    void Start()
+    {
+
     }
 
 
@@ -44,7 +49,7 @@ public class EggVisual : MonoBehaviour
     }
 
     // Set highlight on/off.
-    public void Highlight(bool highlight)
+    public void SetHighlight(bool highlight)
     {
         Highlighted = highlight;
         highlightRenderer.gameObject.SetActive(highlight);

@@ -7,18 +7,21 @@ public class Egg : MonoBehaviour
     // Set in editor
     [SerializeField] private EggVisual eggVisual = null;
 
-    
-    private ColorType topColor;
-    private ColorType bottomColor;
-    private bool selected; // Is it in a match chain?
+    public ColorType TopColor { get; private set; }
+    public ColorType BottomColor { get; private set; }
+    public bool Selected { get; private set; } // Is it in a match chain?
+
+    void Awake()
+    {
+        TopColor = ColorType.Red;
+        BottomColor = ColorType.Red;
+        Selected = false;
+    }
 
     void Start()
     {
-        topColor = ColorType.Red;
-        bottomColor = ColorType.Red;
-        selected = false;
-    }
 
+    }
 
     void Update()
     {
@@ -34,15 +37,16 @@ public class Egg : MonoBehaviour
     // Change the logical color of the two halves of the egg.
     public void SetColor(ColorType newTopColor, ColorType newBottomColor)
     {
-        topColor = newTopColor;
-        bottomColor = newBottomColor;
+        TopColor = newTopColor;
+        BottomColor = newBottomColor;
 
-        eggVisual.Tint(topColor, bottomColor);
+        eggVisual.Tint(TopColor, BottomColor);
     }
 
     // Show that the egg is selected.
     public void SelectEgg(bool select)
     {
-        eggVisual.Highlight(select);
+        eggVisual.SetHighlight(select);
+        Selected = select;
     }
 }

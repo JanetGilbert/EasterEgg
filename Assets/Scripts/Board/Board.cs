@@ -16,12 +16,16 @@ public class Board : MonoBehaviour
 
     // Cached
     private Vector2Int gridSize; // Size of grid, in cells.
-    private Vector2 boardWorldSize; // Size of board, in world coordinates.
-    private Vector2 boardWorldPos; // Bottom-left of board, in world coordinates.
     private Vector2 eggWorldSize; // Size of egg cell, in world coordinates.
+    private Rect boardRect; // Position and size of board
 
     // Game state
-    private int level = 0;
+    private int level = 0; // Current game level
+    private int prevSelectedX =-1; // Keep track of which was the most recent selected grid square.
+    private int prevSelectedY = -1;
+
+    // Selection chain
+    private List<Vector2Int> chain = new List<Vector2Int>();
 
 
     void Start()
@@ -72,8 +76,9 @@ public class Board : MonoBehaviour
 
         // Find the world size and position of the board on screen, via a placeholder panel in the UI.
         Vector3[] boardCorners      = new Vector3[4]; gamePanelPosition.GetWorldCorners(boardCorners); // Bottom left, top left, top right, bottom right
-        boardWorldSize              = new Vector2(boardCorners[3].x - boardCorners[0].x, boardCorners[1].y - boardCorners[0].y);
-        boardWorldPos               = boardCorners[0]; // Board (0,0) is the bottom left of the board.
+        Vector2 boardWorldSize      = new Vector2(boardCorners[3].x - boardCorners[0].x, boardCorners[1].y - boardCorners[0].y);
+        Vector2 boardWorldPos       = boardCorners[0]; // Board (0,0) is the bottom left of the board.
+        boardRect                   = new Rect(boardWorldPos.x, boardWorldPos.y, boardWorldSize.x, boardWorldSize.y);
 
         // Scale the eggs to fit in the board space.
         eggWorldSize                = new Vector2(boardWorldSize.x / (float)gridSize.x, boardWorldSize.y / (float)gridSize.y);
@@ -116,26 +121,111 @@ public class Board : MonoBehaviour
 
     private void CheckInput()
     {
-        // Mouse
-        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f));
-
-        if (Input.GetMouseButton(0)) // Left click
+        bool pressedThisFrame = Input.GetMouseButtonDown(0);
+        bool releasedThisFrame = Input.GetMouseButtonUp(0);
+        bool mouseDown = Input.GetMouseButton(0);
+        
+        // No input this frame.
+        if (!releasedThisFrame && !mouseDown)
         {
-            Rect boardRect = new Rect(boardWorldPos.x, boardWorldPos.y, boardWorldSize.x, boardWorldSize.y);
+            return; 
+        }
 
-            if (boardRect.Contains(mousePosWorld))
+        // Mouse Released anywhere: check if there is a valid chain of eggs.
+        if (releasedThisFrame)
+        {
+            RemoveChain();
+
+            return; 
+        }
+
+        // Mouse/touch position is not on the board.
+        Vector2 position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f));
+        if (!boardRect.Contains(position))
+        {
+            return;
+        }
+
+        // Calculate grid position of click/tap.
+        int x = (int)((position.x - boardRect.x) / eggWorldSize.x);
+        int y = (int)((position.y - boardRect.y) / eggWorldSize.y);
+
+
+        Vector2Int lastEggPos = chain.Count >= 1 ? chain[chain.Count - 1]:new Vector2Int(-1, -1);
+        Vector2Int prevEggPos = chain.Count>=2?chain[chain.Count - 2]:new Vector2Int(-1,-1);
+
+        if (chain.Count == 0) // Start the chain.
+        {
+            eggs[x, y].SelectEgg(true);
+            chain.Add(new Vector2Int(x, y));
+        }
+        else if (prevEggPos.x == x && prevEggPos.y == y) // We are going back on the chain: remove the last egg.
+        {
+            eggs[lastEggPos.x, lastEggPos.y].SelectEgg(false);
+            chain.RemoveAt(chain.Count - 1);
+
+        }
+        else // Add the egg at the mouse position to the chain.
+        {     
+            Egg lastEgg = eggs[lastEggPos.x, lastEggPos.y];
+
+            if (lastEgg != null && (prevSelectedX != x || prevSelectedY != y))
             {
-                int x = (int)((mousePosWorld.x - boardWorldPos.x) / eggWorldSize.x);
-                int y = (int)((mousePosWorld.y - boardWorldPos.y) / eggWorldSize.y);
-
-                Debug.Log("x:" + x + " y:" + y);
-
-                eggs[x, y].SelectEgg(true);
+                if (CanLink(lastEggPos, new Vector2Int(x, y))) // Add egg to chain.
+                {
+                    eggs[x, y].SelectEgg(true);
+                    chain.Add(new Vector2Int(x, y));
+                }
             }
         }
 
+        prevSelectedX = x;
+        prevSelectedY = y;
+    }
 
-        // Touch
+    private void RemoveChain()
+    {
+        if (chain.Count > GameManager.Instance.BoardSetup.ChainLengthMin)
+        {
+            foreach (Vector2Int pos in chain)
+            {
+                // eggs[pos.x, pos.y] = null; /// TODO fix this
+            }
+        }
 
+        foreach (Vector2Int pos in chain)
+        {
+            eggs[pos.x, pos.y].SelectEgg(false);
+        }
+
+        chain.Clear();
+
+  
+    }
+
+    private bool CanLink(Vector2Int start, Vector2Int end)
+    {
+        Egg egg1 = eggs[start.x, start.y];
+        Egg egg2 = eggs[end.x, end.y];
+
+        // The eggs must not be null
+        if (egg1 == null || egg2 == null)
+        {
+            return false;
+        }
+
+        // The eggs must be horizontally or vertically adjacent.
+        Vector2Int dist = start - end;
+
+        if (dist.sqrMagnitude != 1)
+        {
+            return false;
+        }
+
+        // Is there a color match?
+        return (egg1.TopColor == egg2.TopColor ||
+                egg1.TopColor == egg2.BottomColor ||
+                egg1.BottomColor == egg2.TopColor ||
+                egg1.BottomColor == egg2.BottomColor);
     }
 }

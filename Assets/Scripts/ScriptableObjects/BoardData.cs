@@ -11,9 +11,11 @@ public class BoardData : ScriptableObject
     // Set in editor
     [SerializeField] private int gridWidth = 10;
     [SerializeField] private int gridHeight = 10;
+    [SerializeField] private int chainLengthMin = 3;
 
     public int GridWidth => gridWidth;
     public int GridHeight => gridHeight;
+    public int ChainLengthMin => chainLengthMin;
 
     // Level data
     [System.Serializable]
